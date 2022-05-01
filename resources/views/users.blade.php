@@ -9,12 +9,7 @@
 </head>
 
 <body>
-    <h1>User Login</h1>
-    {{-- @if ($errors->any())
-    @foreach ($errors->all() as $err)
-        <li style="color: red">{{$err}}</li>
-    @endforeach
-    @endif --}}
+    <h1>Welcome to User Login</h1>
     <form action="users" method="POST">
         @csrf
         <input type="text" name="username" placeholder="Enter User ID"><br>
