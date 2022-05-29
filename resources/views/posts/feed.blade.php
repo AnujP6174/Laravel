@@ -9,7 +9,7 @@
         <div class="row mt-5">
             <div class="mt-5">
                 <label for="country" class="mb-2 d-block">Select Country</label>
-                    <form action="" method="get">
+                    <form action="{{route('userfeed')}}" method="GET">
                         @csrf
                         <div class="row">
                             <div class="col-2">
@@ -27,28 +27,29 @@
                         </div>
                     </form>
             </div>
-            @foreach ($posts as $pm)
-                @if ($pm->media_type == 2)
+            @foreach ($posts as $pt)
+                @if ($pt->media_type == 2)
                     <div class="col-3 mt-5">
                         <div>
-                            <p><span style="color: green">Caption: </span>{{ $pm->post_caption }}</p>
+                            <p><span style="color: green">Caption: </span>{{ $pt->post_caption }}</p>
                         </div>
-                        <a href=""  class="show-post">
-                            <img src="{{$pm->media_path}}"
+                        <a class="show-post">
+                            <img src="{{$pt->media_path}}"
                             alt="post-images" class="imgpost1" width="200" height="200">
                         </a>
-                        <div><small>Posted By{{' '.$pm->user->name}} {!!'<br>On '.$pm->created_at->format('d-m-Y h:i:s A')!!}</small></div>
+                        <div><small><span style="color: green">Posted By: </span>{{$pt->user->name}} {!!'<br>On '.$pt->created_at->format('d-m-Y h:i:s A')!!}</small></div>
                     </div>
-                @elseif ($pm->media_type == 1)
+                @elseif ($pt->media_type == 1)
                     <div class="col-3 mt-5">
                         <div>
-                            <p><span style="color: green">Caption: </span>{{ $pm->post_caption }}</p></div>
-                        <a href=""  class="show-post">
-                            <video autoplay loop muted width="200" height="200" style="line-height:0;object-fit:cover;">
-                                <source src="{{$pm->media_path}}">
+                            <p><span style="color: green">Caption: </span>{{ $pt->post_caption }}</p>
+                        </div>
+                        <a class="show-post">
+                            <video autoplay loop muted width="200" height="200">
+                                <source src="{{$pt->media_path}}">
                             </video>
                         </a>
-                        <div><small>Posted By{{' '.$pm->user->name}} {!!'<br>On '.$pm->created_at->format('d-m-Y h:i:s A')!!}</small></div>
+                        <div><small><span style="color: green">Posted By: </span>{{$pt->user->name}} {!!'<br>On '.$pt->created_at->format('d-m-Y h:i:s A')!!}</small></div>
                     </div>
                 @endif
             @endforeach

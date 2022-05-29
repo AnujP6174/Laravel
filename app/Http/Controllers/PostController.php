@@ -196,4 +196,10 @@ class PostController extends Controller
         }
         return view('posts.feed', array('post' => $post, 'posts' => $posts));
     }
+
+    public function feedpostdetails(Request $request, $id)
+    {
+        $postss = Post::find($id);
+        return view('posts.feedpostdetails', ['postss' => $postss]);
+    }
 }

@@ -76,4 +76,7 @@ Route::middleware('auth')->group(function () {
 
     // feed access
     Route::get('feed', [PostController::class, 'getuserfeed'])->name('userfeed');
+
+    // feed post details
+    Route::get('feedpostdetails/{fpid}', [PostController::class, 'feedpostdetails'])->name('feedpostdetails');
 });
