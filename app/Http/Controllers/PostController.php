@@ -8,6 +8,8 @@ use App\Http\Requests\EditPostFormRequest;
 use App\Models\Comment;
 use App\Models\Country;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -145,5 +147,42 @@ class PostController extends Controller
         // dd($comment);
         $comment->save();
         return back();
+    }
+
+    public function postlike(Request $request)
+    {
+        $post_id = $request['postId'];
+        $user_id = $request['userId'];
+        $is_like = $request['isLike'] === 'true';
+        $update = false;
+        $post = Post::find($post_id);
+        $user = User::find($user_id);
+        if (!$post) {
+            return null;
+        }
+        // $user = Auth::user()->id;
+        $like = Like::select('*')->where('post_id', $post_id)->where('user_id', $user_id)->first();
+        // dd($like);
+        $user = Like::updateOrCreate(['post_id' => $post_id, 'user_id' => $user_id], ['like' => $is_like]);
+        return true;
+        if ($like) {
+            $already_like = $like->like_dislike;
+            $update = true;
+            if ($already_like == $is_like) {
+                $like->delete();
+                return null;
+            }
+        } else {
+            $like = new Like();
+        }
+        $like->user_id = $user_id;
+        $like->post_id = $post_id;
+        $like->like_dislike = $is_like;
+        if ($update) {
+            $like->update();
+        } else {
+            $like->save();
+        }
+        return null;
     }
 }
