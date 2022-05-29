@@ -185,4 +185,15 @@ class PostController extends Controller
         }
         return null;
     }
+
+    public function getuserfeed(Request $request)
+    {
+        $post = Post::with('country')->groupBy('country_id')->get();
+        if ($request->country == 'all') {
+            $posts = Post::all();
+        } else {
+            $posts = Post::all()->where('country_id', $request->country);
+        }
+        return view('posts.feed', array('post' => $post, 'posts' => $posts));
+    }
 }

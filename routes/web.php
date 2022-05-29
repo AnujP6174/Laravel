@@ -73,4 +73,7 @@ Route::middleware('auth')->group(function () {
 
     // like dislike
     Route::post('like', [PostController::class, 'postlike'])->name('like');
+
+    // feed access
+    Route::get('feed', [PostController::class, 'getuserfeed'])->name('userfeed');
 });

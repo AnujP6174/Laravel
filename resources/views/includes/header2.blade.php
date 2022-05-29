@@ -14,10 +14,10 @@
                         <a href="{{route('dashboard')}}" class="nav-link {{(request()->is('dashboard')) ? 'active' : '' }}">Dashboard</a>
                     </li>
                     <li class="nav-item me-4">
-                        <a href="{{route('yourposts')}}" class="nav-link {{(request()->is('your_posts')) ? 'active' : ''}}">Your Posts</a>
+                        <a href="{{route('yourposts')}}" class="nav-link {{(request()->is('your_post')) ? 'active' : ''}}">Your Posts</a>
                     </li>
                     <li class="nav-item me-4">
-                        <a href="" class="nav-link {{(request()->is('otheruserspost*')) ? 'active' : ''}}">All Posts</a>
+                        <a href="{{route('userfeed')}}" class="nav-link {{(request()->is('feed*')) ? 'active' : ''}}">Feed</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
