@@ -10,6 +10,6 @@ class Post extends Model
     use HasFactory;
     public function getUserRelation()
     {
-        return  $this->belongsTo(related: 'App\Models\User', foreignKey: 'user_id', ownerKey: 'id');
+        return  $this->belongsTo(related: 'App\Models\User', 'user_id', 'id');
     }
 }

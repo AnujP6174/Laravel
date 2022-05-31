@@ -44,11 +44,11 @@ class User extends Authenticatable
 
     public function getAddressRelation()
     {
-        return $this->hasOne(related: 'App\Models\address', foreignKey: 'user_id', localKey: 'id');
+        return $this->hasOne(Address::class, 'user_id', 'id');
     }
 
     public function getPostRelation()
     {
-        return $this->hasMany(related: 'App\Models\Post', foreignKey: 'user_id', localKey: 'id');
+        return $this->hasMany(Post::class, 'user_id', 'id');
     }
 }

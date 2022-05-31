@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\usercontroller;
 use Illuminate\Database\Eloquent\Factories\Relationship;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -12,3 +13,7 @@ Route::get('/', function () {
     dd($posts);
     return view('welcome');
 });
+
+Route::resource('some', usercontroller::class);
+
+Route::group(['middleware' => ['auth'], 'prefix' => ['user']]);
