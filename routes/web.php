@@ -21,26 +21,26 @@ Route::get('/', function () {
 });
 
 Route::namespace('Admin')->group(function () {
-    Route::namespace('Auth')->middleware('guest')->group(function () {
+    Route::namespace('Auth')->middleware('guest', 'backbutton')->group(function () {
         Route::get('admin-login', [LoginController::class, 'index'])->name('login');
         Route::post('admin-login', [LoginController::class, 'login'])->name('admin.login');
     });
 
-    Route::middleware('auth:admin')->group(function () {
+    Route::middleware('auth:admin', 'backbutton')->group(function () {
         Route::get('dashboard', [LoginController::class, 'getdashboard'])->name('admin.dashboard');
     });
-    Route::get('admin-logout', [LoginController::class, 'adminlogout'])->name('admin.logout');
+    Route::get('admin-logout', [LoginController::class, 'adminlogout'])->middleware('backbutton')->name('admin.logout');
 });
 
 Route::namespace('User')->group(function () {
-    Route::namespace('Auth')->middleware('guest')->group(function () {
+    Route::namespace('Auth')->middleware('guest', 'backbutton')->group(function () {
         Route::get('user-login', [ULoginController::class, 'index'])->name('user.logins');
         Route::post('user-login', [ULoginController::class, 'userlogin'])->name('user.login');
     });
 
-    Route::middleware('customauth:user')->group(function () {
+    Route::middleware('customauth:user', 'backbutton')->group(function () {
         Route::get('home', [ULoginController::class, 'gethome'])->name('user.home');
     });
 
-    Route::get('user-logout', [ULoginController::class, 'userlogout'])->name('logout');
+    Route::get('user-logout', [ULoginController::class, 'userlogout'])->middleware('backbutton')->name('logout');
 });

@@ -1,5 +1,7 @@
 @extends('includes.master')
-
+@section('title')
+    Login
+@endsection
 @section('content')
 <div class="mt-5 mb-2">
   <h2>User Login</h2>

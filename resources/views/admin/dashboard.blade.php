@@ -1,5 +1,7 @@
 @extends('includes.master')
-
+@section('title')
+    Dashboard
+@endsection
 @section('content')
     <div class='mt-5'>
         <h5>Welcome to Admin Dashboard</h5>

@@ -25,7 +25,7 @@ class LoginFormRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/',
+            'password' => 'required|min:8',
         ];
     }
 
@@ -36,7 +36,6 @@ class LoginFormRequest extends FormRequest
             'email.email' => 'Email should contain @,.',
             'password.required' => 'Please enter password',
             'password.min' => 'Password must be 8 characters long',
-            'password.regex' => 'Password must contain lower,upper,numbers,special characters and should be 8 characters long',
         ];
     }
 }
