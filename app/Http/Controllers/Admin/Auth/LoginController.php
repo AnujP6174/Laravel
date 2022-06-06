@@ -32,16 +32,15 @@ class LoginController extends Controller
         }
     }
 
-    public function getdashboard()
+    public function getDashboard()
     {
         return view('admin/dashboard');
     }
 
-    public function adminlogout()
+    public function adminLogout()
     {
         try {
             if (Auth::guard('admin')->check()) {
-                Session::flush();
                 Auth::guard('admin')->logout();
                 // dd("logout done");
                 return redirect()->route('login');

@@ -20,7 +20,7 @@ class ULoginController extends Controller
         return view('user/userlogin');
     }
 
-    public function userlogin(LoginFormRequest $request)
+    public function userLogin(LoginFormRequest $request)
     {
         try {
             if (Auth::guard('user')->attempt($request->only('email', 'password'))) {
@@ -32,12 +32,12 @@ class ULoginController extends Controller
         }
     }
 
-    public function gethome()
+    public function getHome()
     {
         return view('user/home');
     }
 
-    public function userlogout()
+    public function userLogout()
     {
         try {
             if (Auth::guard('user')->check()) {

@@ -16,10 +16,12 @@ class CustomAuth
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $guard = null)
     {
+
+        // dd(explode('|', $guard));
         // echo "Hello from custom auth";
-        if (!Auth::guard('user')->check()) {
+        if (!Auth::guard($guard)->check()) {
             return redirect()->route('user.logins');
         }
         return $next($request);
