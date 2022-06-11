@@ -18,6 +18,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, 'user_id', 'id');
     }
 
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public function getProfilePhotoAttribute($profile)
     {
         return Storage::disk('local')->url($profile);
