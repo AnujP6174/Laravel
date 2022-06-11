@@ -12,7 +12,7 @@
                 <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
                     @if (Auth::guard('user')->check())
                         <li class="nav-item me-4">
-                            <a href="{{route('user.Post')}}" class="nav-link {{(request()->is('user-posts','new-post')) ? 'active' : ''}}">Posts</a>
+                            <a href="{{route('user.Post')}}" class="nav-link {{(request()->is('user-posts','post')) ? 'active' : ''}}">Posts</a>
                         </li>
                         <li class="nav-item me-4">
                             <a href="{{route('user.Feed')}}" class="nav-link {{(request()->is('user-feed')) ? 'active' : ''}}">Feed</a>
@@ -22,7 +22,7 @@
                         </li>
                     @endif
                         <li class="nav-item me-4">
-                            <a href="{{(Auth::guard('admin')->check() ? route('admin.Logout'): route('user.Logout') )}}" class="nav-link btn btn-sm btn-danger">Logout</a>
+                            <a href="{{(Auth::guard('admin')->check() ? route('admin.Logout'): route('user.Logout') )}}" class="nav-link btn btn-sm btn-danger" style="color: white">Logout</a>
                         </li>
                 </ul>
                     {{-- @if (Auth::guard('admin')->check())

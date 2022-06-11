@@ -45,7 +45,7 @@ $(document).ready(function () {
             profile: {
                 required: true,
                 extension: "jpg|jpeg|png|svg",
-                filesize: 3,
+                filesize: 10,
             },
         },
         messages: {
@@ -74,7 +74,7 @@ $(document).ready(function () {
             profile: {
                 required: "Please upload Profile Image",
                 extension: "Only Images are allowed!!",
-                filesize: "Image Size Must be less than 3MB",
+                filesize: "Image Size Must be less than 10MB",
             },
         },
         errorElement: "em",

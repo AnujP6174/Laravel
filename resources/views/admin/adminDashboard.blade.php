@@ -6,7 +6,12 @@
 @section('content')
     <div class="container mt-5">
         <div class="row">
-            <div class="col-12 col-md-12 mt-5 justify-content-center">
+            <div class="col-12 mt-4">
+                <h3 style="color: green">Users List</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-12 mt-2 justify-content-center">
                 <table class="table">
                     <thead>
                     <tr>

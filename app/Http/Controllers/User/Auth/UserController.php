@@ -46,7 +46,8 @@ class UserController extends Controller
 
     public function userFeed()
     {
-        return view('user.userFeed');
+        $allposts = Post::all();
+        return view('user.userFeed', ['allpost' => $allposts]);
     }
 
     public function userLogout()

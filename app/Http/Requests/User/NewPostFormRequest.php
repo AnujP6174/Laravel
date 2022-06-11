@@ -25,7 +25,7 @@ class NewPostFormRequest extends FormRequest
     {
         return [
             'caption' => 'required|max:300',
-            'media' => 'required|mimes:jpg,jpeg,png,gif,mp4,ogg,ogv,avi,mpeg,mov,wmv,flv,mkv|max:15000',
+            'media' => 'required|mimes:jpg,jpeg,webp,png,gif,mp4,ogg,ogv,avi,mpeg,mov,wmv,flv,mkv|max:15000',
         ];
     }
 
@@ -35,7 +35,7 @@ class NewPostFormRequest extends FormRequest
             'caption.required' => 'Please Enter Caption',
             'caption.max' => 'Maximum 300 characters allowed',
             'media.required' => 'Please Upload Post Image',
-            'media.mimes' => 'Only jpg,jpeg,png,gif,mp4,ogg,ogv,avi,mpeg,mov,wmv,flv,mkv image or video extension are allowed',
+            'media.mimes' => 'Only jpg,jpeg,webp,png,gif,mp4,ogg,ogv,avi,mpeg,mov,wmv,flv,mkv image or video extension are allowed',
             'media.max' => 'File should be less than 15MB',
         ];
     }

@@ -16,7 +16,6 @@
         </div>
     </div>
     <div class="row g-2 mt-5 justify-content-start">
-        {{-- <div class="col-12"> --}}
             @foreach ($post as $pst)
                 @if ($pst->media_type===1)
                     <div class="col-12 col-md-3">
@@ -25,6 +24,7 @@
                                 <source src="{{$pst->media_path}}">
                             </video>
                         </a>
+                        <p><span style="color: green">Caption: </span>{{$pst->post_caption}}</p>
                     </div>
                 @elseif($pst->media_type===2)
                     <div class="col-12 col-md-3">
@@ -35,7 +35,6 @@
                     </div>
                 @endif
             @endforeach
-        {{-- </div> --}}
     </div>
 </div>
 @endsection

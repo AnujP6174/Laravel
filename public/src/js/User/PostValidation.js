@@ -19,7 +19,7 @@ $(document).ready(function () {
             media: {
                 required: true,
                 extension:
-                    "jpg|jpeg|png|gif|mp4|ogg|ogv|avi|mpeg|mov|wmv|flv|mkv",
+                    "jpg|jpeg|webp|png|gif|mp4|ogg|ogv|avi|mpeg|mov|wmv|flv|mkv",
                 filesize: 15,
             },
         },
@@ -31,7 +31,7 @@ $(document).ready(function () {
             media: {
                 required: "Please upload Profile Image",
                 extension:
-                    "Only image or video type jpg,jpeg,png,gif,mp4,ogg,ogv,avi,mpeg,mov,wmv,flv,mkv is allowed!!",
+                    "Only image or video type jpg,jpeg,webp,png,gif,mp4,ogg,ogv,avi,mpeg,mov,wmv,flv,mkv is allowed!!",
                 filesize: "File than 15MB",
             },
         },
