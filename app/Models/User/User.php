@@ -20,7 +20,7 @@ class User extends Authenticatable
 
     public function like()
     {
-        return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class, 'user_id', 'id');
     }
 
     public function getProfilePhotoAttribute($profile)

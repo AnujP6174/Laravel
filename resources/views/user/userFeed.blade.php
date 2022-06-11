@@ -15,8 +15,8 @@
                         <p>
                             <span style="color: green">Posted By: </span>{{$posts->user->name}} {!!'<br>On '.$posts->created_at->format('d-m-Y h:i:s A')!!}<br>
                             <a href="" class="me-2 btn btn-sm btn-primary" style="text-decoration: none">Like</a>
+                            <a href="" data-post={{$posts->id}} data-user={{$user->id}} class="btn btn-sm btn-secondary commentbtn">Comment</a>
                         </p>
-                        <a href="" class="btn btn-sm btn-secondary comment">Comment</a>
                     </div>
                 @elseif($posts->media_type===1)
                     <div class="col-3 col-md-3 mt-5">
@@ -29,31 +29,43 @@
                         <p>
                             <span style="color: green">Posted By: </span>{{$posts->user->name}} {!!'<br>On '.$posts->created_at->format('d-m-Y h:i:s A')!!}<br>
                             <a href="" class="me-2 btn btn-sm btn-primary" style="text-decoration: none">Like</a>
-                            <a href="" class="btn btn-sm btn-secondary comment">Comment</a>
+                            <a href="" class="btn btn-sm btn-secondary commentbtn" data-anuj={{$posts->id}}>Comment</a>
                         </p>
                     </div>
                 @endif
             @endforeach
         </div>
 </div>
-
-        {{-- comment modal starts--}}
-        <div class="commentmodal" tabindex="-1">
-            <div class="modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Modal title</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
+    {{-- comment modal starts--}}
+    <div class="modal fade" tabindex="-1" id="cmntmodal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Comment</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+              <form method="POST" id="cmntform">
+                  @csrf
+                  <div class="form-group">
+                    <label for="body">Add Comment</label>
+                    <textarea class="form-control" name="body" id="body" rows="5"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="modalsave">Save changes</button>
+            </div>
+          </div>
         </div>
-        {{-- comment modal ends --}}
+    </div>
+    {{-- comment modal ends --}}
+@endsection
+@section('js')
+    <script src="{{URL::to('src/js/User/commentModal.js')}}"></script>
+    <script>
+        var token='{{csrf_token()}}';
+        var urlComment={{route('add.Comment')}};
+    </script>
 @endsection

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\NewPostFormRequest;
 use App\Http\Traits\ImageTrait;
+use App\Models\User\Comment;
 use App\Models\User\Post;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,6 +63,22 @@ class PostController extends Controller
             // dd($exception);
             return redirect()->back()->with('error', 'Temprary Server Error.');
         }
+    }
+
+    public function newComment(Request $request)
+    {
+        $post_id = Post::find($request['postId']);
+        $user_id = User::find($request['userId']);
+        // dd($post_id);
+        if (!Auth::guard('user')) {
+            return back();
+        }
+        Comment::create([
+            'user_id' => $user_id,
+            'post_id' => $user_id,
+            'comment' => $request['body'],
+        ]);
+        return redirect()->route('user.Feed');
     }
 
     /**
