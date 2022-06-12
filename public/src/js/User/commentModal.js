@@ -1,12 +1,10 @@
-var postId = 0;
 var userId = 0;
-var postBodyElement = null;
+var postId = 0;
 $(document).ready(function () {
     $(".commentbtn").click(function (event) {
         event.preventDefault();
         userId = event.target.dataset["user"];
         postId = event.target.dataset["post"];
-        // var postBody = postBodyElement.textContent;
         $("#cmntmodal").modal("show");
     });
 
@@ -15,14 +13,20 @@ $(document).ready(function () {
             method: "POST",
             url: urlComment,
             data: {
-                body: $("#body").val(),
                 userId: userId,
                 postId: postId,
+                comment: $("#comment").val(),
                 _token: token,
             },
-        }).done(function (msg) {
-            $(postBodyElement).text(msg["new-body"]);
-            $("#cmntmodal").modal("hide");
+            success: function (response) {
+                console.log(response);
+                $("#cmntmodal").modal("hide");
+                alert("Comment Added");
+            },
+            error: function (error) {
+                console.log(error);
+                alert("Comment not added");
+            },
         });
     });
 });

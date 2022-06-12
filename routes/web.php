@@ -43,6 +43,6 @@ Route::namespace('User')->middleware('backbutton')->group(function () {
         Route::get('user-feed', [UserController::class, 'userFeed'])->name('user.Feed');
         Route::get('user-posts', [UserController::class, 'userPosts'])->name('user.Post');
         Route::get('user-account', [UserController::class, 'getAccount'])->name('user.Account');
-        Route::post('comment', [PostController::class, 'newComment'])->name('add.Comment');
     });
 });
+Route::post('comment', [PostController::class, 'newComment'])->name('add.Comment');
