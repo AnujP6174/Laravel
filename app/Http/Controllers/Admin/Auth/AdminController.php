@@ -40,7 +40,7 @@ class AdminController extends Controller
 
     public function getadminDashboard()
     {
-        $user = User::paginate(3);
+        $user = User::all();
         return view('admin.adminDashboard', ['users' => $user]);
     }
 
@@ -51,6 +51,20 @@ class AdminController extends Controller
             return redirect()->route('login');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', 'Temporary server error.');
+        }
+    }
+
+    public function userStatus(Request $request)
+    {
+        try {
+            // dd("enter");
+            $user_id = $request->userId;
+            User::where('id', $user_id)->update([
+                'active_status' => $request->status,
+            ]);
+            return response()->json(['success', 'Status Changes Successfully']);
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Status Not Changed');
         }
     }
 

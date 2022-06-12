@@ -27,6 +27,7 @@ Route::namespace('Admin')->middleware('backbutton')->group(function () {
         Route::get('admin-dashboard', [AdminController::class, 'getadminDashboard'])->name('admin.Dashboard');
     });
 });
+Route::get('user-status', [AdminController::class, 'userStatus'])->name('user.Status');
 
 Route::resource('post', PostController::class)->middleware(['userauth:user']);
 Route::namespace('User')->middleware('backbutton')->group(function () {
