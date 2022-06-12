@@ -8,6 +8,23 @@
 @section('content')
 <div class="container px-5 mt-5">
     <div class="row mt-5 justify-content-start">
+        <div class="mt-5">
+                <form action="{{route('user.Feed')}}" method="get">
+                    {{-- @csrf --}}
+                    <div class="row">
+                        <div class="col-2 me-4">
+                            <select class="form-select d-inline" style="width: 200px" name="sorting" id="sorting">
+                                <option disabled selected>Select Sorting</option>
+                                    <option value="created_at" @if ("created_at"===$params) selected @endif>Created At
+                                    </option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary">Sort</button>
+                        </div>
+                    </div>
+                </form>
+        </div>
         @if (count($allpost)>0)
             @foreach ($allpost as $posts)
                 @if ($posts->media_type===2)

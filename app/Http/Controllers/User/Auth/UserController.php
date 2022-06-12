@@ -45,11 +45,14 @@ class UserController extends Controller
         }
     }
 
-    public function userFeed()
+    public function userFeed(Request $request)
     {
         $likes = Like::all();
         $allposts = Post::paginate(8);
-        return view('user.userFeed', ['allpost' => $allposts, 'like' => $likes, 'user' => Auth::guard('user')->user()]);
+        if ($request->sorting === "created_at") {
+            $allposts = Post::orderBy('created_at', 'desc')->get();
+        }
+        return view('user.userFeed', ['allpost' => $allposts, 'like' => $likes, 'params' => $request->sorting, 'user' => Auth::guard('user')->user()]);
     }
 
     public function userLogout()
