@@ -10,7 +10,27 @@
                 <h3 style="color: green">Users List</h3>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
+                <form action="" method="get">
+                    <div class="row">
+                        <div class="col-2 me-4">
+                            <select class="form-select d-inline" style="width: 200px" name="sorting" id="sorting">
+                                <option selected disabled>Select Sorting</option>
+                                    <option value="active" @if ("active"===$params)
+                                        selected
+                                    @endif>Active</option>
+                                    <option value="inactive" @if ("inactive"===$params)
+                                        selected
+                                    @endif>Inactive</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary">Sort</button>
+                        </div>
+                    </div>
+                </form>
+        </div>
+        <div class="row mt-5">
             <div class="col-12 col-md-12 mt-2 table-responsive justify-content-center">
                 <table class="table border border-2 border-dark" id="usertable">
                     <thead>

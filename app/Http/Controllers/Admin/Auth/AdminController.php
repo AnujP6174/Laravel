@@ -38,10 +38,15 @@ class AdminController extends Controller
         }
     }
 
-    public function getadminDashboard()
+    public function getadminDashboard(Request $request)
     {
         $user = User::all();
-        return view('admin.adminDashboard', ['users' => $user]);
+        if ($request->sorting === "active") {
+            $user = $user->where('active_status', 1);
+        } elseif ($request->sorting === "inactive") {
+            $user = $user->where('active_status', 0);
+        }
+        return view('admin.adminDashboard', ['users' => $user, 'params' => $request->sorting]);
     }
 
     public function adminLogout()
