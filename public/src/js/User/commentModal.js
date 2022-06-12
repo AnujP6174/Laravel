@@ -19,9 +19,8 @@ $(document).ready(function () {
                 _token: token,
             },
             success: function (response) {
-                // console.log(response);
                 $("#cmntmodal").modal("hide");
-                // alert("Comment Added");
+                alert("Comment Added");
             },
             error: function (error) {
                 console.log(error);

@@ -27,8 +27,8 @@ Route::namespace('Admin')->middleware('backbutton')->group(function () {
         Route::get('admin-dashboard', [AdminController::class, 'getadminDashboard'])->name('admin.Dashboard');
     });
 });
+
 Route::resource('post', PostController::class)->middleware(['userauth:user']);
-// Route::resource('user', UserController::class);
 Route::namespace('User')->middleware('backbutton')->group(function () {
     Route::namespace('Auth')->middleware('guest')->group(function () {
         Route::get('/', function () {
@@ -43,6 +43,6 @@ Route::namespace('User')->middleware('backbutton')->group(function () {
         Route::get('user-feed', [UserController::class, 'userFeed'])->name('user.Feed');
         Route::get('user-posts', [UserController::class, 'userPosts'])->name('user.Post');
         Route::get('user-account', [UserController::class, 'getAccount'])->name('user.Account');
+        Route::post('comment', [PostController::class, 'newComment'])->name('add.Comment');
     });
 });
-Route::post('comment', [PostController::class, 'newComment'])->name('add.Comment');
