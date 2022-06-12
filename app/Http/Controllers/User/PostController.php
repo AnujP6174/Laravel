@@ -68,19 +68,15 @@ class PostController extends Controller
     public function newComment(Request $request)
     {
         try {
-            $user_id = $request->userId;
-            $post_id = $request->postId;
-            $comment = $request->comment;
-            // dd($user_id);
             if (!Auth::guard('user')) {
                 return back();
             }
             Comment::create([
-                'user_id' => $user_id,
-                'post_id' => $post_id,
-                'comment' => $comment,
+                'user_id' => $request->userId,
+                'post_id' => $request->postId,
+                'comment' => $request->comment,
             ]);
-            return redirect()->route('user.Feed')->with('success', 'Comment Added');
+            return redirect()->back()->with('success', 'Comment Added');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', 'Comment Not added.');
         }
