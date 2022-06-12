@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\editAccountFormRequest;
 use App\Http\Requests\User\UserLoginFormRequest;
 use App\Http\Requests\User\UserSignupFormRequest;
 use App\Http\Traits\ImageTrait;
@@ -12,6 +13,7 @@ use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -97,7 +99,7 @@ class UserController extends Controller
 
     public function index()
     {
-        //
+        return view('user.userEditAccount', ['user' => Auth::guard('user')->user()]);
     }
 
     /**
@@ -116,9 +118,26 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(editAccountFormRequest $request)
     {
-        //
+        try {
+            $user = Auth::guard('user')->user();
+            $profilephoto = $this->imageUpload($request, 'profile', 'profile');
+            if (isset($profilephoto)) {
+                Storage::disk('public')->delete($user->profile_photo);
+            } else {
+                $profilephoto = $user->profile_photo;
+            }
+            User::where('id', $user->id)->update([
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $user->email,
+                'profile_photo' => $profilephoto,
+            ]);
+            return redirect()->route('user.Account')->with('success', 'Profile was updated');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Temporary Server Error.');
+        }
     }
 
     /**
@@ -140,7 +159,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 
     }
 
     /**

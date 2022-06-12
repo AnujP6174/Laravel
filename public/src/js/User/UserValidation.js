@@ -123,4 +123,52 @@ $(document).ready(function () {
             $(element).addClass("is-valid").removeClass("is-invalid");
         },
     });
+
+    // edit Account
+    $("#editaccount").validate({
+        rules: {
+            name: {
+                required: true,
+                maxlength: 50,
+                lettersonly: true,
+            },
+            username: {
+                required: true,
+                maxlength: 15,
+                regex: "[A-Za-z][a-z0-9_]{7,29}$",
+            },
+            profile: {
+                extension: "jpg|jpeg|png|svg|webp",
+                filesize: 10,
+            },
+        },
+        messages: {
+            name: {
+                required: "Please Enter Name",
+                maxlength: "Maximum 50 characters are allowed",
+                lettersonly: "Name should be alphabets only",
+            },
+            username: {
+                required: "Please Enter Username",
+                maxlength: "Maximum 15 characters are allowed",
+                regex: "Only lower,upper,_,and numbers are allowed",
+            },
+            profile: {
+                extension:
+                    "Only jpg,webp,png,jpeg,svg image extension are allowed",
+                filesize: "Image Size Must be less than 10MB",
+            },
+        },
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            error.insertAfter(element);
+            error.addClass("invalid-feedback");
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid").removeClass("is-valid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-valid").removeClass("is-invalid");
+        },
+    });
 });

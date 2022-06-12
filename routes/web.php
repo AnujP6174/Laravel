@@ -30,6 +30,7 @@ Route::namespace('Admin')->middleware('backbutton')->group(function () {
 });
 
 Route::resource('post', PostController::class)->middleware(['userauth:user']);
+Route::resource('user', UserController::class)->middleware(['userauth:user']);
 Route::namespace('User')->middleware('backbutton')->group(function () {
     Route::namespace('Auth')->middleware('guest')->group(function () {
         Route::get('/', function () {

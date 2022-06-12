@@ -11,10 +11,10 @@
                 <h3 class="text-center">Your Profile</h3>
             </div>
             <div class="row g-0">
-                <div class="col-12 col-md-5 d-flex justify-content-center  justify-content-sm-start">
-                    <img src="{{$user->profile_photo}}" alt="Profile Image" class="mt-3 mt-sm-0 img-fluid" width='250' height='100'>
+                <div class="col-12 col-md-6 d-flex justify-content-center  justify-content-sm-start">
+                    <img src="{{$user->profile_photo}}" alt="Profile Image" class="mt-3 mt-sm-0 img-fluid" width='300' height='100'>
                 </div>
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-6">
                     <div class="card-body mt-2 d-flex flex-column justify-content-center align-items-center align-items-sm-start  justify-content-sm-start">
                         <p><i class="fa-solid fa-user text-primary"></i><span class="card-title ms-2 h5">{{$user->name}}</span>
                         </p>
@@ -22,7 +22,7 @@
                         </p>
                         <p><i class="fa-solid fa-envelope text-primary"></i><span class="card-text ms-2">{{$user->email}}</span>
                         </p>
-                        {{-- <p><a href="" class="btn btn-primary mt-4"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Profile</a></p> --}}
+                        <p><a href="{{route('user.index')}}" class="btn btn-primary mt-4"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Profile</a></p>
                     </div>
                 </div>
             </div>

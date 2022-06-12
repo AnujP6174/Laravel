@@ -90,7 +90,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $posts = Post::find($id);
+        $comment = $posts->comment;
+        return view('user.userPostDetails', ['post' => $posts, 'comments' => $comment]);
     }
 
     /**

@@ -30,7 +30,7 @@
                 @if ($posts->media_type===2)
                     <div class="col-12 col-md-3 mt-5 postBox">
                         <span style="color: green">Caption: </span>{{ $posts->post_caption }}
-                        <a>
+                        <a href="{{route('post.show',['post'=>$posts->id])}}">
                             <img src="{{$posts->media_path}}" alt="post-images" width="200" height="200" style="border: 4px solid lightblue">
                         </a>
                         <p>
@@ -43,7 +43,7 @@
                 @elseif($posts->media_type===1)
                     <div class="col-3 col-md-3 mt-5">
                         <span style="color: green">Caption: </span>{{ $posts->post_caption }}
-                        <a>
+                        <a href="{{route('post.show',['post'=>$posts->id])}}">
                             <video autoplay loop muted width="200" height="200" style="border: 4px solid lightblue">
                                 <source src="{{$posts->media_path}}">
                             </video>
