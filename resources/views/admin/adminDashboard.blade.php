@@ -62,11 +62,11 @@
                 },
                 success: function(data){
                     console.log(data);
-                    alert('User status Set');
+                    alert('User status Changed');
                 },
                 error:function(error){
                     console.log(error);
-                    alert('User Status Not Set');
+                    alert('User Status Not Changed');
                 }
             });
         });

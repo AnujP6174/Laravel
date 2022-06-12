@@ -64,7 +64,13 @@ class UserController extends Controller
     {
         try {
             if (Auth::guard('user')->attempt($request->only('email', 'password'))) {
-                return redirect()->route('user.Feed')->with('success', 'Login Successful');
+                $userstatus = Auth::guard('user')->user()->active_status;
+                if ($userstatus === 1) {
+                    return redirect()->route('user.Feed')->with('success', 'Login Successful');
+                } else {
+                    Auth::guard('user')->logout();
+                    return redirect()->route('user.Login')->with('error', 'Your account is Inactive');
+                }
             } else {
                 return back()->with('error', 'Please Check Credentials');
             }
