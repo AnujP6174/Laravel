@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserLoginFormRequest;
 use App\Http\Requests\User\UserSignupFormRequest;
 use App\Http\Traits\ImageTrait;
+use App\Models\User\Like;
 use App\Models\User\Post;
 use App\Models\User\User;
 use Illuminate\Http\Request;
@@ -46,8 +47,9 @@ class UserController extends Controller
 
     public function userFeed()
     {
-        $allposts = Post::all();
-        return view('user.userFeed', ['allpost' => $allposts, 'user' => Auth::guard('user')->user()]);
+        $likes = Like::all();
+        $allposts = Post::paginate(8);
+        return view('user.userFeed', ['allpost' => $allposts, 'like' => $likes, 'user' => Auth::guard('user')->user()]);
     }
 
     public function userLogout()

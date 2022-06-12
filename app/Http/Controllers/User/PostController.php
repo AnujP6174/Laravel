@@ -68,7 +68,7 @@ class PostController extends Controller
     public function newComment(Request $request)
     {
         try {
-            if (!Auth::guard('user')) {
+            if (!Auth::guard('user')->user()) {
                 return back();
             }
             Comment::create([

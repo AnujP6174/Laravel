@@ -8,17 +8,19 @@
 @section('content')
 <div class="container px-5 mt-5">
     <div class="row mt-5 justify-content-start">
+        @if (count($allpost)>0)
             @foreach ($allpost as $posts)
                 @if ($posts->media_type===2)
-                    <div class="col-12 col-md-3 mt-5">
+                    <div class="col-12 col-md-3 mt-5 postBox">
                         <span style="color: green">Caption: </span>{{ $posts->post_caption }}
                         <a>
                             <img src="{{$posts->media_path}}" alt="post-images" width="200" height="200" style="border: 4px solid lightblue">
                         </a>
                         <p>
                             <span style="color: green">Posted By: </span>{{$posts->user->name}} {!!'<br>On '.$posts->created_at->format('d-m-Y h:i:s A')!!}<br>
-                            <a href="" class="me-2 btn btn-sm btn-primary" style="text-decoration: none">Like</a>
-                            <a href="" data-post={{$posts->id}} data-user={{$user->id}} class="btn btn-sm btn-secondary commentbtn">Comment</a>
+                            {{-- <a href="" class="me-2 btn btn-sm btn-primary" style="text-decoration: none">Like</a> --}}
+                            <input data-user={{$user->id}} data-post={{$posts->id}} class="toggle-class" type="checkbox" data-onstyle="primary" data-offstyle="danger" data-toggle="toggle" data-on="Like" data-off="Unlike" {{ $user->active_status ? 'checked' : '' }}>
+                            <a href="" data-post={{$posts->id}} data-user={{$user->id}} class="btn btn-secondary commentbtn">Comment</a>
                         </p>
                     </div>
                 @elseif($posts->media_type===1)
@@ -31,13 +33,19 @@
                         </a>
                         <p>
                             <span style="color: green">Posted By: </span>{{$posts->user->name}} {!!'<br>On '.$posts->created_at->format('d-m-Y h:i:s A')!!}<br>
-                            <a href="" class="me-2 btn btn-sm btn-primary" style="text-decoration: none">Like</a>
-                            <a href="" data-post={{$posts->id}} data-user={{$user->id}} class="btn btn-sm btn-secondary commentbtn" >Comment</a>
+                            <a href="" class="me-2 btn btn-primary" style="text-decoration: none">Like</a>
+                            <a href="" data-post={{$posts->id}} data-user={{$user->id}} class="btn btn-secondary commentbtn" >Comment</a>
                         </p>
                     </div>
                 @endif
             @endforeach
-        </div>
+        @endif
+    </div>
+    <div class="row">
+        @if(count($allpost)>0)
+        <p class="text-center mt-4 mb-5"><button class="load-more btn btn-dark" data-totalResult="{{ App\Models\User\Post::count() }}">Load More</button></p>
+        @endif
+    </div>
 </div>
     {{-- comment modal starts--}}
     <div class="modal fade" tabindex="-1" id="cmntmodal">
@@ -71,4 +79,5 @@
         var urlComment="{{route('add.Comment')}}";
     </script>
     <script src="{{URL::to('src/js/User/commentModal.js')}}"></script>
+    <script src="{{URL::to('src/js/User/loadMoreData.js')}}"></script>
 @endsection
