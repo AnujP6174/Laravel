@@ -40,7 +40,6 @@ class authorObserver
     public function deleted(Author $author)
     {
         Log::info("Author Deleted");
-        // dd($author);
         Mail::to($author->email)->send(new deleteMail($author));
     }
 
