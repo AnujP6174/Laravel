@@ -18,9 +18,7 @@ class CustomAuth
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-
         // dd(explode('|', $guard));
-        // echo "Hello from custom auth";
         if (!Auth::guard($guard)->check()) {
             return redirect()->route('user.logins');
         }
