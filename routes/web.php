@@ -32,14 +32,14 @@ Route::namespace('Admin')->middleware('backbutton')->group(function () {
     });
 });
 
-Route::namespace('User')->middleware('guest')->group(function () {
+Route::namespace('User')->middleware('backbutton')->group(function () {
     Route::namespace('Auth')->middleware('guest')->group(function () {
         Route::get('user-login', [ULoginController::class, 'index'])->name('user.logins');
         Route::post('user-login', [ULoginController::class, 'userLogin'])->name('user.login');
         Route::get('user-logout', [ULoginController::class, 'userLogout'])->withoutMiddleware('guest')->name('logout');
     });
 
-    Route::middleware('customauth')->group(function () {
+    Route::middleware('customauth:user')->group(function () {
         Route::get('home', [ULoginController::class, 'getHome'])->name('user.home');
     });
 });

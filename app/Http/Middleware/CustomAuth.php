@@ -18,15 +18,9 @@ class CustomAuth
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        // dd(explode('|', $guard));
         if (!Auth::guard($guard)->check()) {
             return redirect()->route('user.logins');
         }
         return $next($request);
-        // $path = $request->path();
-        // if ($path == "home") {
-        // return redirect()->route('userlogins');
-        //     dd("redirect done");
-        // }
     }
 }
